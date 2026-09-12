@@ -24,36 +24,18 @@ public class GalleryFragment extends Fragment {
             R.drawable.image5
     };
 
-    public GalleryFragment() {
-    }
+    public GalleryFragment() {}
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
 
-        View view = inflater.inflate(
-                R.layout.fragment_gallery,
-                container,
-                false
-        );
+        View view = inflater.inflate(R.layout.fragment_gallery, container, false);
 
-        recyclerView = view.findViewById(
-                R.id.galleryRecyclerView
-        );
+        recyclerView = view.findViewById(R.id.galleryRecyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        recyclerView.setLayoutManager(
-                new GridLayoutManager(
-                        getContext(),
-                        2
-                )
-        );
-
-        GalleryAdapter adapter =
-                new GalleryAdapter(images);
-
+        GalleryAdapter adapter = new GalleryAdapter(images);
         recyclerView.setAdapter(adapter);
 
         return view;
