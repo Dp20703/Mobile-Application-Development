@@ -16,6 +16,11 @@
             android:name=".home.HomeActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".home.ContactActivity"
+            android:exported="false" />
+    
+
         <!-- Login Screen -->
         <activity
             android:name=".auth.LoginActivity"

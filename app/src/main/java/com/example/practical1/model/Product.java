@@ -2,10 +2,11 @@ package com.example.practical1.model;
 
 public class Product {
 
-    String name;
-    String price;
+    private final String name;
+    private final String price;
 
     public Product(String name, String price) {
+
         this.name = name;
         this.price = price;
     }
