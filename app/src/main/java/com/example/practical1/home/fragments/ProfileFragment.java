@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
 
 import com.example.practical1.R;
@@ -21,6 +23,7 @@ public class ProfileFragment extends Fragment {
     EditText name, email, age;
     RadioButton male, female;
     Button updateButton, logoutButton;
+    ToggleButton themeToggle;
     SharedPreferences sharedPreferences;
 
     public ProfileFragment() {
@@ -44,6 +47,7 @@ public class ProfileFragment extends Fragment {
         female = view.findViewById(R.id.profileFemale);
         updateButton = view.findViewById(R.id.updateButton);
         logoutButton = view.findViewById(R.id.logoutButton);
+        themeToggle = view.findViewById(R.id.themeToggle);
 
         sharedPreferences =
                 requireActivity().getSharedPreferences("UserData", 0);
@@ -63,7 +67,6 @@ public class ProfileFragment extends Fragment {
         } else if (savedGender.equals("Female")) {
             female.setChecked(true);
         }
-
 
         updateButton.setOnClickListener(v -> {
 
@@ -115,6 +118,28 @@ public class ProfileFragment extends Fragment {
 
             // Close HomeActivity
             requireActivity().finish();
+
+        });
+
+        // Theme section
+
+        // Loaded Saved theme
+        boolean darkMode  = sharedPreferences.getBoolean("darkMode", false);
+
+        themeToggle.setChecked(darkMode);
+
+        // change theme
+        themeToggle.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putBoolean("darkMode", isChecked);
+            editor.apply();
+
+            if (isChecked) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
 
         });
 

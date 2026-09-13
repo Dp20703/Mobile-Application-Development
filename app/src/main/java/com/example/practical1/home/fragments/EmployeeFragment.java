@@ -46,7 +46,7 @@ public class EmployeeFragment extends Fragment {
         saveButton = view.findViewById(R.id.saveButton);
 
 
-        sharedPreferences = requireActivity().getSharedPreferences("UserData", 0);
+        sharedPreferences = requireActivity().getSharedPreferences("EmployeeData", 0);
 
         // Load previously saved employee data
         name.setText(sharedPreferences.getString("employeeName", ""));

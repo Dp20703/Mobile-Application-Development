@@ -2,12 +2,14 @@ package com.example.practical1.splash;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.example.practical1.R;
 import com.example.practical1.auth.LoginActivity;
@@ -19,10 +21,34 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Load saved theme preference
+        SharedPreferences preferences =
+                getSharedPreferences("UserData", MODE_PRIVATE);
+
+        boolean darkMode =
+                preferences.getBoolean("darkMode", false);
+
+        // Apply saved theme
+        if (darkMode) {
+
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_YES
+            );
+
+        } else {
+
+            AppCompatDelegate.setDefaultNightMode(
+                    AppCompatDelegate.MODE_NIGHT_NO
+            );
+        }
+
         setContentView(R.layout.activity_splash);
 
-        ImageView logo = findViewById(R.id.splash_logo);
-        TextView title = findViewById(R.id.splash_title);
+        ImageView logo =
+                findViewById(R.id.splash_logo);
+
+        TextView title =
+                findViewById(R.id.splash_title);
 
         // Initially hide views
         logo.setAlpha(0f);
@@ -44,7 +70,7 @@ public class SplashActivity extends AppCompatActivity {
                 .setStartDelay(500)
                 .start();
 
-        // Open MainActivity after 3 seconds
+        // Open LoginActivity after 3 seconds
         new Handler().postDelayed(() -> {
 
             Intent intent = new Intent(
