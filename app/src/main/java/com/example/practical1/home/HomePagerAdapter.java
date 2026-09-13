@@ -9,6 +9,7 @@ import com.example.practical1.home.fragments.EmployeeFragment;
 import com.example.practical1.home.fragments.GalleryFragment;
 import com.example.practical1.home.fragments.ProductFragment;
 import com.example.practical1.home.fragments.ProfileFragment;
+import com.example.practical1.home.fragments.TodoFragment;
 
 public class HomePagerAdapter extends FragmentStateAdapter {
     public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -17,19 +18,34 @@ public class HomePagerAdapter extends FragmentStateAdapter {
 
     @NonNull
     @Override
+
     public Fragment createFragment(int position) {
-        if (position == 0) {
-            return new EmployeeFragment();
-        } else if (position == 1) {
-            return new ProductFragment();
-        } else if (position == 2) {
-            return new GalleryFragment();
-        } else {
-            return new ProfileFragment();
+
+        switch (position) {
+
+            case 0:
+                return new EmployeeFragment();
+
+            case 1:
+                return new ProductFragment();
+
+            case 2:
+                return new GalleryFragment();
+
+            case 3:
+                return new ProfileFragment();
+
+            case 4:
+                return new TodoFragment();
+
+            default:
+                return new EmployeeFragment();
         }
     }
+
+
     @Override
-    public  int getItemCount(){
-        return 4;
+    public int getItemCount() {
+        return 5;
     }
 }

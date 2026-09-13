@@ -19,7 +19,8 @@ public class HomeActivity extends AppCompatActivity {
             "Employee",
             "Products",
             "Gallery",
-            "Profile"
+            "Profile",
+            "Todo"
     };
 
     @Override
